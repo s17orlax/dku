@@ -1,0 +1,4 @@
+LoadModule proxy_module modules/mod_proxy.so
+LoadModule proxy_http_module modules/mod_proxy_http.so
+ProxyPass / http://my-tomcat:8080/
+ProxyPassReverse / http://my-tomcat:8080/
