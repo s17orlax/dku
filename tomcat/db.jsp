@@ -4,9 +4,9 @@
 <%@ page import = "javax.sql.*" %>
 <%@ page import = "javax.naming.*" %>    
 <%
-String URL = "jdbc:mysql://my-mysql:3306/dku";         //3306은 Mysql포트번호, dku는 DB명
-String USER = "dku";                                   //계정 id 
-String PASS="welcome1";
+String URL = "jdbc:mysql://my-mysql:3306/snorlax";         //3306은 Mysql포트번호, DB명: snorlax
+String USER = "snorlax";
+String PASS="0526";
 
 Connection conn=null;
 Statement stmt = null;
@@ -17,12 +17,13 @@ try
         Class.forName("com.mysql.jdbc.Driver");                 //mysql을 사용
         conn = DriverManager.getConnection(URL, USER, PASS);    //아이디, 비밀번호, 주소를 넣고 연결 
         stmt = conn.createStatement();
-        rs = stmt.executeQuery( "select * from test" );         //DB내 테이블명
+        rs = stmt.executeQuery( "select * from PersonalInfo" );         //DB내 테이블명
         while( rs.next() )
         {
-                String id = rs.getString("id");                 //ID, name은 테이블 내 필드명입니다 
+                String id = rs.getString("id");                 //테이블의 필드명 - id, name, email
                 String name = rs.getString("name");
-                out.println(" ID: "+id+"<br>"+"이름 : "+name+"<br><br>");
+                String email = rs.getString("email");
+                out.println(" ID: "+id+"<br> Name: "+name+"<br> E-mail: "+email+"<br>");
         }
 }catch(SQLException e)                                  //try문 종료
 {
